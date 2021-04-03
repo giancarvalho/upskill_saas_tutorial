@@ -2,7 +2,7 @@
 //Document ready
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro-form');
-  var submitBtn = $('form-signup-btn')
+  var submitBtn = $('#form-signup-btn');
   
   //Set Stripe Public key
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content'));
@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function(){
     var ccNum = $('#card_number').val(),
         cvcNum = $('#card_code').val(),
         expMonth = $('#card_month').val(), 
-        expYear = $('card_year').val();
+        expYear = $('#card_year').val();
         
     //User Stripe js library to check for card errors.
     
@@ -35,10 +35,10 @@ $(document).on('turbolinks:load', function(){
       alert('The credit card code is invalid');
     }
     
-    //validate experation date
+    //Validate expiration date.
     if(!Stripe.card.validateExpiry(expMonth, expYear)) {
       error = true;
-      alert('The experiation dates appears to be invalid');
+      alert('The expiration date appears to be invalid');
     }
     
     if(error){
@@ -66,7 +66,7 @@ $(document).on('turbolinks:load', function(){
    var token = response.id;
   
     //Inject card token as hidden field into a form
-    theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token));
+    theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token) );
     
     //Submit form to our Rails app
     theForm.get(0).submit();
