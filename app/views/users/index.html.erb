@@ -19,8 +19,14 @@
                         <h2> <%= user.profile.first_name %> <%= user.profile.last_name %></h2>
                         
                       <% end %>
-                      <p><b><%= user.profile.job_title %> </b></p>
-                      <p> <%= user.profile.description %></p>
+                      <p><b><%= user.profile.job_title %>
+                        <% if user.plan_id == 2 %>
+                          <span class="label label-danger">PRO</span>
+                        <% end %>
+                      </p>
+                      <p> 
+                        <%= user.profile.description %>
+                      </p>
                   </div>
                 </div>
               </li>
